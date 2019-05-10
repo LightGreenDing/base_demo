@@ -1,0 +1,1 @@
+package com.zed.base_demo.utils;import com.corundumstudio.socketio.SocketIOClient;/** * @author:Zed * @date: 2019/5/9 */public class SocketUtil {    /**     * 根据socketclient获取参数-获取clientID     */    public static String getClientId(SocketIOClient client) {        return client.getHandshakeData().getSingleUrlParam(SocketConstant.CLIENT_ID);    }}

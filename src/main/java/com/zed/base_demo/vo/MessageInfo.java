@@ -1,0 +1,1 @@
+package com.zed.base_demo.vo;import lombok.Data;/** * @author:Zed * @date: 2019/5/9 */@Datapublic class MessageInfo {    String MsgContent;}

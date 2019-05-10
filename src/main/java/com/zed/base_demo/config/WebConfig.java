@@ -1,17 +1,11 @@
 package com.zed.base_demo.config;
 
-import com.zed.base_demo.interceptor.LoginHandlerInterceptor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 扩展springMvc
@@ -22,34 +16,34 @@ import java.util.List;
 @Configuration
 @Slf4j
 public class WebConfig implements WebMvcConfigurer {
-    @Autowired
-    private LoginHandlerInterceptor loginHandlerInterceptor;
+//    @Autowired
+//    private LoginHandlerInterceptor loginHandlerInterceptor;
     @Value("${upload.file.path}")
     private String uploadPath;
 
     /**
      * 当前激活的配置文件
      */
-//    @Value("${spring.profiles.active}")
-//    private String env;
+    @Value("${spring.profiles.active}")
+    private String env;
 
-    /**
-     * 添加拦截器
-     *
-     * @param registry
-     */
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        List list = new ArrayList();
-        list.add("/index.html");
-        list.add("/register");
-        list.add("/login");
-        list.add("/index");
-        // addPathPatterns("/**") 表示拦截所有的请求
-        // excludePathPatterns("index.html","/login", "/register") 表示除了首页,登陆与注册之外，因为主页登陆注册不需要登陆也可以访问
-
-        registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**").excludePathPatterns(list);
-    }
+//    /**
+//     * 添加拦截器
+//     *
+//     * @param registry
+//     */
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+////        不拦截的请求
+//        List<String> list = new ArrayList<>();
+//        list.add("/register");
+//        list.add("/login");
+//        list.add("/index");
+//        // addPathPatterns("/**") 表示拦截所有的请求
+//        // excludePathPatterns("index.html","/login", "/register") 表示除了首页,登陆与注册之外，因为主页登陆注册不需要登陆也可以访问
+//
+//        registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**").excludePathPatterns(list);
+//    }
 
     /**
      * 请求图片的时候直接返回图片路径
